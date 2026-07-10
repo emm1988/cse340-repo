@@ -56,3 +56,55 @@ INSERT INTO projects (organization_id, title, description, location, date) VALUE
 (3, 'Neighborhood Clean-Up Blitz', 'Mobilizing 100 volunteers to clean up litter, paint over graffiti, and plant trees.', 'Riverbed District Pathways', '2026-10-10'),
 (3, 'Winter Coat Drive', 'Collecting and distributing heavy winter coats, blankets, and gloves for shelters.', 'St. Jude Community Hall', '2026-11-15'),
 (3, 'Holiday Toy Workshop', 'Sorting, wrapping, and delivering donated holiday gifts to families in need.', 'UnityServe Headquarters', '2026-12-18');
+
+-- CATEGORIES ========================================
+CREATE TABLE categories (
+    category_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+);
+
+INSERT INTO categories (name) VALUES
+('Environmental'),
+('Educational'),
+('Community Service'),
+('Health and Wellness');
+
+ALTER TABLE projects 
+ADD COLUMN category_id INTEGER 
+REFERENCES categories(category_id);
+
+UPDATE projects SET category_id = 1 WHERE title IN (
+    'Community Center Renovation',
+    'Green Roof Installation',
+    'Eco-Friendly Park Benches',
+    'Solar Panel Community Grid',
+    'Neighborhood Clean-Up Blitz'
+);
+
+UPDATE projects SET category_id = 2 WHERE title IN (
+    'Composting for Beginners',
+    'School Vegetable Patches',
+    'Vertical Farming Workshop',
+    'Senior Tech Support Day'
+);
+
+UPDATE projects SET category_id = 3 WHERE title IN (
+    'Accessible Ramp Initiative',
+    'Seasonal Harvest Festival',
+    'Annual Food Drive',
+    'Holiday Toy Workshop'
+);
+
+UPDATE projects SET category_id = 4 WHERE title IN (
+    'Winter Coat Drive'
+	'Urban Greenhouse Kickoff'
+);
+
+ALTER TABLE categories ADD COLUMN description TEXT;
+
+UPDATE categories SET description = 'Projects focused on sustainability, conservation, and protecting natural resources.' WHERE name = 'Environmental';
+UPDATE categories SET description = 'Opportunities to learn new skills, support schools, and promote lifelong learning.' WHERE name = 'Educational';
+UPDATE categories SET description = 'Initiatives that strengthen neighborhoods through volunteer work and local support.' WHERE name = 'Community Service';
+UPDATE categories SET description = 'Programs aimed at improving physical, mental, and emotional well-being.' WHERE name = 'Health and Wellness';
+
+SELECT * FROM projects;

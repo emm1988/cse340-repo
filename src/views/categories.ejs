@@ -3,22 +3,12 @@
         <div class="categories-container">
             <h1>Categories</h1>
             <div class="categories-list">
-                <div class="category-item">
-                    <h2>Environmental</h2>
-                    <p>Projects focused on sustainability, conservation, and protecting natural resources.</p>
-                </div>
-                <div class="category-item">
-                    <h2>Educational</h2>
-                    <p>Opportunities to learn new skills, support schools, and promote lifelong learning.</p>
-                </div>
-                <div class="category-item">
-                    <h2>Community Service</h2>
-                    <p>Initiatives that strengthen neighborhoods through volunteer work and local support.</p>
-                </div>
-                <div class="category-item">
-                    <h2>Health and Wellness</h2>
-                    <p>Programs aimed at improving physical, mental, and emotional well-being.</p>
-                </div>
+                <% categories.forEach(category => { %>
+                    <div class="category-item">
+                        <h2><%= category.name %></h2>
+                        <p><%= category.description %></p>
+                    </div>
+                <% }); %>
             </div>
         </div>
     </main>
