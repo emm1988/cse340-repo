@@ -3,18 +3,18 @@
         <h1>
             <%= title %>
         </h1>
-        <h2>Upcoming Service Projects</h2>
         <ul>
             <% projects.forEach(project=> { %>
                 <li>
                     <% if (project.logo) { %>
-                        <% } %>
-                        <strong>
-                            <%= new Date(project.date).toLocaleDateString('en-EN', { year: 'numeric' , month: 'long' , day: 'numeric' }) %>:
-                        </strong>
-                        <%= project.title %> (<%= project.organization_name %>)
+                        <img src="<%= project.logo %>" alt="<%= project.title %> logo" style="height:40px; vertical-align:middle; margin-right:8px;" />
+                    <% } %>
+                    <a href="/projects/<%= project.project_id %>">
+                            <%= new Date(project.date).toLocaleDateString('en-EN', { year: 'numeric' , month: 'long' , day: 'numeric'}) %>:
+                        <span><%= project.title %> (<%= project.organization_name %>)</span>
+                    </a>
                 </li>
                 <% }); %>
         </ul>
     </main>
-    <%- include('partials/footer') %>
+<%- include('partials/footer') %>

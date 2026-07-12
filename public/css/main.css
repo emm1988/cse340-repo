@@ -122,6 +122,17 @@ main ul li a {
     text-decoration: none;
     font-weight: bold;
 }
+main ul li a span {
+    padding: 14px 20px;
+    color: black;
+    text-decoration: none;
+    font-weight: normal;
+}
+main p a {
+    color: #005b96;
+    text-decoration: none;
+    font-weight: bold;
+}
 main ul li:hover {
     background: #f1f3f5;
 }
