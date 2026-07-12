@@ -203,6 +203,28 @@ main.org-profile ul li a {
     margin-bottom: 0;
 }
 
+.category-link {
+    text-decoration: none;
+    color: #0056b3;
+}
+
+.category-link:hover {
+    text-decoration: underline;
+}
+
+.view-projects-btn {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.view-projects-btn:hover {
+    color: #1d4ed8;
+}
+
 /* FOOTER */
 
 footer {

@@ -5,5 +5,6 @@
         <p><strong>Date: </strong><%= new Date(project.date).toLocaleDateString('en-US', { year: 'numeric' , month: 'long' , day: 'numeric' })%></p>
         <p><strong>Description: </strong><%= project.description %></p>
         <p><strong>Organization: </strong><a href="/organization/<%= project.organization_id %>"><%= project.organization_name %></a></p>
+        <p><strong>Category: </strong><a href="/categories/<%= project.category_id %>"><%= project.category_name %></a></p>
     </main>
 <%- include('partials/footer') %>

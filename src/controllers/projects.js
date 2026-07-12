@@ -2,6 +2,7 @@
 import { getAllProjects } from '../models/projects.js';
 import { getUpcomingProjects } from '../models/projects.js';
 import { getProjectDetails } from '../models/projects.js';
+import { getCategoryByProjectId } from '../models/projects.js';
 
 
 const NUMBER_OF_UPCOMING_PROJECTS = 5;

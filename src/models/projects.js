@@ -1,17 +1,17 @@
 import db from './db.js'
 
 const getAllProjects = async () => {
-    const query = `
+  const query = `
         SELECT p.project_id, p.title, o.name AS organization_name, p.date
       FROM public.projects p
       JOIN public.organization o ON p.organization_id = o.organization_id
       ORDER BY p.date ASC;
     `;
 
-    const result = await db.query(query);
+  const result = await db.query(query);
 
-    return result.rows;
-}
+  return result.rows;
+};
 
 const getProjectsByOrganizationId = async (organizationId) => {
   const query = `
@@ -64,9 +64,12 @@ const getProjectDetails = async (id) => {
       p.date,
       p.location,
       p.organization_id,
-      o.name AS organization_name
+      o.name AS organization_name,
+      p.category_id,               
+      c.name AS category_name     
     FROM public.projects p
     JOIN public.organization o ON p.organization_id = o.organization_id
+    LEFT JOIN public.categories c ON p.category_id = c.category_id
     WHERE p.project_id = $1;
   `;
 
@@ -76,5 +79,41 @@ const getProjectDetails = async (id) => {
   return result.rows[0];
 };
 
+const getCategoryByProjectId = async (id) => {
+  const query = `
+  SELECT
+      p.project_id,
+      p.title,
+      p.description,
+      p.date,
+      p.location,
+      p.organization_id,
+      o.name AS organization_name,
+      p.category_id,
+      c.name AS category_name 
+    FROM public.projects p
+    JOIN public.organization o ON p.organization_id = o.organization_id
+    LEFT JOIN public.categories c ON p.category_id = c.category_id 
+    WHERE p.project_id = $1;
+  `;
+  
+  const queryParams = [id];
+  const result = await db.query(query, queryParams);
+
+  return result.rows[0];
+};
+
+const getProjectsByCategoryId = async (categoryId) => {
+  const query = `
+    SELECT p.project_id, p.title, o.name AS organization_name, p.date
+    FROM public.projects p
+    JOIN public.organization o ON p.organization_id = o.organization_id
+    WHERE p.category_id = $1
+    ORDER BY p.date ASC;
+  `;
+  const result = await db.query(query, [categoryId]);
+  return result.rows;
+};
+
 // Export the model functions
-export { getAllProjects, getProjectsByOrganizationId, getUpcomingProjects, getProjectDetails };
+export { getAllProjects, getProjectsByOrganizationId, getUpcomingProjects, getProjectDetails, getCategoryByProjectId, getProjectsByCategoryId }; 

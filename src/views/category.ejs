@@ -1,0 +1,32 @@
+<%- include('partials/header') %>
+    <main>
+        <div class="category-detail-container">
+            <h1>
+                <%= category.name %>
+            </h1>
+            <p class="category-description">
+                <%= category.description %>
+            </p>
+
+            <h2>Available Projects in this Category</h2>
+
+            <% if (projects.length===0) { %>
+                <p>No projects available in this category at the moment.</p>
+                <% } else { %>
+                    <ul>
+                        <% projects.forEach(project=> { %>
+                            <li>
+                                <a href="/projects/<%= project.project_id %>">
+                                        <%= new Date(project.date).toLocaleDateString('en-US', { year: 'numeric' ,
+                                            month: 'long' , day: 'numeric' }) %>:
+                                    <span><%= project.title %></span>
+                                    <span>(<%= project.organization_name %>)</span>
+                                </a>
+                            </li>
+                            <% }); %>
+                    </ul>
+                    <% } %>
+                    <p><a href="/categories">Back to All Categories</a></p>
+        </div>
+    </main>
+<%- include('partials/footer') %>
